@@ -11,12 +11,16 @@ from raopred.prepare_data import clean_text
 vectorizer = TfidfVectorizer(lowercase=False, max_features=50)
 
 
+def load_json(path_json):
+    return pd.read_json(path_json, orient='values')
+
+
 def clean_col(row, col):
     return clean_text(row[col])
 
 
 def get_data(df):
-    return df.apply(lambda x: clean_col(x, 'request_title'), axis =1)
+    return df.apply(lambda x: clean_col(x, 'request_text'), axis =1)
 
 
 def get_labels(df):
@@ -31,7 +35,7 @@ def get_train_test_split(data, labels, split=0.15):
 
     vectorizer = TfidfVectorizer(stop_words=None,
                             lowercase=False,
-                            max_df=1,
+                            max_df=1.,
                             min_df=10,
                             max_features=200,
                             norm='l2',
@@ -59,10 +63,10 @@ def train(model, X_train, y_train):
 
 
 def training_pipeline():
-    df = pd.read_json(os.path.join(
+    df = load_json(os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        'pizza_data.json')
-        ,orient='values')
+        'pizza_data.json'))
+
     print('Extracting and preparing data for training ...')
     data = get_data(df)
     labels = get_labels(df)

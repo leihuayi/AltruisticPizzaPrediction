@@ -35,6 +35,8 @@ def correspondance_miswrite(word):
         return "i'm"
     elif word == "ive":
         return "i've"
+    else:
+        return word
 
 
 def clean_text(sentence):
@@ -46,4 +48,7 @@ def clean_text(sentence):
         w for w in lemmatized_words if (w not in punctuation) and (w not in stop_words)
     ]
     cleaned_words = [ correspondance_miswrite(w) for w in cleaned_words ]
-    return ' '.join(cleaned_words)
+    if len(cleaned_words) > 0:
+        return ' '.join(cleaned_words)
+    else:
+        return ''
