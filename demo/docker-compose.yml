@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+
+  api:
+    image: raopdemo-api:dev
+    build:
+      context: ./api
+    environment:
+      - PATH_IMGS=/app/images
+    ports:
+      - 5000:5000
+    volumes:
+      - $PWD/api/src:/app/src
+
+  client:
+    image: raopdemo-client:dev
+    build:
+      context: ./client
+      target: dev
+    ports:
+      - 8080:8080
+    volumes:
+      - $PWD/client/src:/app/src
+      - /app/node_modules
