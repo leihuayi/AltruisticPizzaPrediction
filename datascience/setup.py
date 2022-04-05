@@ -7,7 +7,7 @@ NAME = 'raopred'
 
 setup(
     name=f'raopred',
-    version='0.0.2',
+    version='0.0.1',
     description='Random Acts of Pizza Prediction',
     author='Sarah Gross',
     author_email='leihuayi@gmail.com',
@@ -15,8 +15,15 @@ setup(
     package_data={
         'raopred': ['pickles/*']
     },
-    install_requires=['nltk', 'scikit-learn'],
+    install_requires=[
+        'nltk==3.7',
+        'scikit-learn==1.0.2'
+    ],
     extras_require={
-        'train': ['numpy', 'pandas', 'seaborn', 'jupyter'],
+        'train': [
+            'pandas>=1.3.0',
+            'seaborn==0.11.2',
+            'jupyter==1.0.0'
+    ],
     },
 )
