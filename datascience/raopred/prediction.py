@@ -7,6 +7,8 @@ from .data_preparation import clean_text
 pickles_dir = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
     'pickles')
+if not os.path.exists(pickles_dir) or len(os.listdir(pickles_dir)) == 0 :
+    raise FileNotFoundError('Missing model and vectorizer, please download them')
 
 
 with open(os.path.join(pickles_dir,'vectorizer.pickle'), 'rb') as data:

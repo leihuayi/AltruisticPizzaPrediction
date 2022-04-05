@@ -1,4 +1,4 @@
-name: CI for Publishing data science package
+name: CI for testing and publishing data science package
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
     - name: Run tests
       run: docker-compose up tests
     - name: Set up Python 3.9
-      if: ( contains(needs.check-files-modified.outputs.changed_files, 'setup.py') )
+      if: ( success() && contains(needs.check-files-modified.outputs.changed_files, 'setup.py') )
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
