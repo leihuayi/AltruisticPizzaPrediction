@@ -8,7 +8,6 @@ RUN wget -O pizza_data.json "https://drive.google.com/uc?export=download&id=13wX
 COPY --chown=jovyan:users raopred/ raopred/
 COPY --chown=jovyan:users research/ research/
 RUN mv pizza_data.json research/
-RUN echo $USER
 
 FROM train as test
 COPY tests/ tests/
