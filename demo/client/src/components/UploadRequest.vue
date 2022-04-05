@@ -1,5 +1,5 @@
 <template>
-    <div class="file-input" v-if="result == null">
+    <div class="file-input">
         <h4>Try a Random Acts of Pizza request :</h4>
         <form v-on:submit.prevent="submitForm">
             <input type="text" class="w-100 my-2" name="title" placeholder="[REQUEST] Title" v-model="form.title">
@@ -19,13 +19,12 @@
             </div>
             <input class="btn btn-secondary" type="submit" value="Submit">
         </form>
-    </div>
-    <div class="result" v-else>
-        <p class="result-text">Likely to receive a pizza : {{ result }}</p>
-        <div>
-            <button class="btn btn-secondary" @click="restart">Recommencer</button>
+        <div class="result" v-if="result != null">
+            <label>Likely to receive a pizza: </label>
+            <label :style="result=='TRUE' ? { 'color': 'green' } : { 'color': 'red' }">{{ result }}</label>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -55,7 +54,7 @@
 
                 axios.post('/upload', this.form)
                     .then(res => {
-                        this.result = res.data.label
+                        this.result = res.data.label.toString().toUpperCase()
                         // console.log(process.env.BASE_URL + "temp/" + this.result)
                     })
                     .catch((err) => console.log(err));
@@ -71,6 +70,10 @@
     form {
         width: 50%;
         margin: auto;
+    }
+
+    .result {
+        margin-top: 20px;
     }
 
 </style>

@@ -14,6 +14,8 @@ docker-compose build tests
 docker-compose up tests
 ```
 
+> If you have an error "Download models", run `./download_models.sh` .
+
 ## Package usage
 **Install**
 ```bash

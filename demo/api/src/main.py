@@ -2,7 +2,7 @@ import shutil, os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
-from raopred import predict
+from raopred import predict as raopredict
 
 app = FastAPI()
 
@@ -41,6 +41,5 @@ async def predict(req : Request):
         data["num_comments"]
     ]
 
-    #label = predict(input_data)
-    label=False
+    label = raopredict(input_data)
     return {"label": label}
