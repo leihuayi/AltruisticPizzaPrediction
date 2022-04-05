@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  notebook:
+    build:
+      context: .
+      target: train
+    ports:
+      - 8888:8888
+    volumes:
+      - $PWD/raopred:/home/jovyan/raopred
+      - $PWD/research:/home/jovyan/research
+    command: ["jupyter", "notebook"]
+
+  tests:
+    build:
+      context: .
+      target: test
+    volumes:
+      - $PWD/tests:/home/jovyan/tests
+    command: ["python", "-m", "unittest", "-v"]

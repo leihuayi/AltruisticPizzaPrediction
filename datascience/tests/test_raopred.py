@@ -6,18 +6,26 @@ from raopred.prediction import predict
 class TestRaopred(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestRaopred, self).__init__(*args, **kwargs)
-        self.text = "Just started my new job and my paycheck hasn't rolled in yet.\
-        I am down to my last dollar now. Would love a pizza in these trying times. I have held strong for 3 months.\n\n\
-        I do also intent to pay-it-forward when I can afford it in a couple of months. Much appreciated!\n\n\
-        Edit: I failed to mention I am in Toronto! Nearby pizza chains include 241, Dominoes and Pizza Pizza."
+        self.text = "I would like a pizza so much please. I would not know how to thank you if you can forward me a pizza. \
+            I'll definitely pay you back my friend. Thanks !! https://myphoto.com"
 
     def test_clean_text(self):
         """Checks the text preprocessing function"""
-        res = "start new job paycheck n't roll yet.i last dollar would love pizza try time hold strong 3 month also intent pay-it-forward \
-            afford couple month much appreciate fail mention toronto nearby pizza chain include 241 domino pizza pizza"
+        res = "would like pizza much please would know thank forward pizza 'll definitely pay back friend thanks http //myphoto.com"
         self.assertEqual(clean_text(self.text), res)
+
+    def test_predict_wrong_shape_raises(self):
+        """Checks that the prediction works properly"""
+        with self.assertRaises(ValueError):
+            label = predict([self.text])
 
     def test_predict(self):
         """Checks that the prediction works properly"""
-        label = predict(self.text)
-        self.assertTrue(isinstance(label, bool))
+        title = "[Request] I really want some food please"
+        len_text = len(self.text)
+        number_of_downvotes = 2
+        number_of_upvotes = 8
+        request_number_of_comments = 4
+        input = [title+' '+self.text, len_text, number_of_downvotes, number_of_upvotes, request_number_of_comments]
+        label = predict(input)
+        self.assertTrue(label)

@@ -9,6 +9,9 @@ except Exception as e:
     print(e)
     nltk.download('stopwords')
     nltk.download('wordnet')
+    nltk.download('omw-1.4')
+    nltk.download('punkt')
+    nltk.download('averaged_perceptron_tagger')
 
 
 punctuation = list(",.?!(){}[]-_\"'\\;:+*<>@#§^$%&|/") + ['\n', '\r', '\t', '...', '..']
