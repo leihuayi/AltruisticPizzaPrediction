@@ -32,8 +32,12 @@ jobs:
       run: docker-compose build tests
     - name: Run tests
       run: docker-compose up tests
-    - name: Make pickles dir
+    - name: Set up Python 3.9
       if: ( success() && contains(needs.check-files-modified.outputs.changed_files, 'setup.py') )
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Make pickles dir
       run: mkdir raopred/pickles
     - name: wget
       uses: wei/wget@v1
@@ -42,11 +46,7 @@ jobs:
     - name: wget
       uses: wei/wget@v1
       with:
-        args: -O raopred/pickles/model.pickle "ttps://drive.google.com/uc?export=download&id=1dSGcBNPCDtLZwUc9yYtaev3xzYzGpaqS"
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.9
+        args: -O raopred/pickles/vectorizer.pickle "https://drive.google.com/uc?export=download&id=1dSGcBNPCDtLZwUc9yYtaev3xzYzGpaqS"
     - name: Install pypa/build
       run: python -m pip install build --user
     - name: Build a binary wheel and a source tarball
