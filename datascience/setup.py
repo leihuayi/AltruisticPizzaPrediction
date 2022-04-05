@@ -16,16 +16,8 @@ setup(
     package_data={
         'raopred': ['pickles/*']
     },
-    install_requires=[
-        'nltk',
-    ],
+    install_requires=['nltk', 'scikit-learn'],
     extras_require={
-        'test': [],
-        'train': ['numpy', 'pandas', 'scikit-learn', 'seaborn'],
-    },
-    entry_points={
-        'console_scripts': [
-            'room_classification=room_classification.__main__:main',
-        ]
+        'train': ['numpy', 'pandas', 'seaborn', 'jupyter'],
     }
 )

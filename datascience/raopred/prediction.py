@@ -1,6 +1,6 @@
 import os
 import pickle
-from prepare_data import clean_text
+from .data_preparation import clean_text
 
 
 pickles_dir = os.path.join(

@@ -33,7 +33,7 @@ def lemmatize_tupla_word_postag(tupla):
     """
     giving a tupla of the form (wordString, posTagString) like ('guitar', 'NN'), return the lemmatized word
     """
-    tag = extract_wnpostag_from_postag(tupla[1])    
+    tag = extract_wnpostag_from_postag(tupla[1])
     return lemmatizer.lemmatize(tupla[0], tag) if tag is not None else tupla[0]
 
 

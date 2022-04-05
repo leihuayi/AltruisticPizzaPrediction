@@ -6,8 +6,7 @@ services:
     image: raopdemo-api:dev
     build:
       context: ./api
-    environment:
-      - PATH_IMGS=/app/images
+      target: dev
     ports:
       - 5000:5000
     volumes:
