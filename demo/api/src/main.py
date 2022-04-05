@@ -42,5 +42,4 @@ async def predict(req : Request):
     ]
 
     label = predict(input_data)
-    label = False
     return {"label": label}

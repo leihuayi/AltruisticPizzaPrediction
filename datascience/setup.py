@@ -7,7 +7,7 @@ NAME = 'raopred'
 
 setup(
     name=f'raopred',
-    version='0.0.4',
+    version='0.0.5',
     description='Random Acts of Pizza Prediction',
     author='Sarah Gross',
     author_email='leihuayi@gmail.com',

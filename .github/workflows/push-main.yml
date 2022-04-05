@@ -32,8 +32,18 @@ jobs:
       run: docker-compose build tests
     - name: Run tests
       run: docker-compose up tests
-    - name: Set up Python 3.9
+    - name: Make pickles dir
       if: ( success() && contains(needs.check-files-modified.outputs.changed_files, 'setup.py') )
+      run: mkdir raopred/pickles
+    - name: wget
+      uses: wei/wget@v1
+      with:
+        args: -O raopred/pickles/model.pickle "https://drive.google.com/uc?export=download&id=1DbfCvaUMfJcBclHUq1E75HRF6M7Yo5tv"
+    - name: wget
+      uses: wei/wget@v1
+      with:
+        args: -O raopred/pickles/model.pickle "ttps://drive.google.com/uc?export=download&id=1dSGcBNPCDtLZwUc9yYtaev3xzYzGpaqS"
+    - name: Set up Python 3.9
       uses: actions/setup-python@v1
       with:
         python-version: 3.9
