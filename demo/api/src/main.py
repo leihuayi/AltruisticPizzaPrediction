@@ -34,12 +34,13 @@ async def predict(req : Request):
     print(data)
 
     input_data = [
-        data.title + ' ' + data.text,
-        len(data.text),
-        data.num_downvotes,
-        data.num_upvotes,
-        data.num_comments
+        data["title"] + ' ' + data["text"],
+        len(data["text"]),
+        data["num_downvotes"],
+        data["num_upvotes"],
+        data["num_comments"]
     ]
 
-    label = predict(input_data)
+    #label = predict(input_data)
+    label=False
     return {"label": label}

@@ -7,11 +7,11 @@ NAME = 'raopred'
 
 setup(
     name=f'raopred',
-    version='0.0.6',
+    version='0.0.7',
     description='Random Acts of Pizza Prediction',
     author='Sarah Gross',
     author_email='leihuayi@gmail.com',
-    packages=find_packages(exclude=['tests', 'research']),
+    packages=find_packages(exclude=['tests', 'research', 'scripts']),
     package_data={
         'raopred': ['pickles/*']
     },

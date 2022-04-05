@@ -11,11 +11,11 @@
             </div>
             <div class="form-group">
                 <label>Request number of 👎</label>
-                <input type="number" class="w-10 m-2" name="title" min="0" placeholder="0" v-model="form.num_upvotes">
+                <input type="number" class="w-10 m-2" name="title" min="0" placeholder="0" v-model="form.num_downvotes">
             </div>
             <div class="form-group">
                 <label>Request number of comments</label>
-                <input type="number" class="w-10 m-2" name="title" min="0" placeholder="0" v-model="form.num_upvotes">
+                <input type="number" class="w-10 m-2" name="title" min="0" placeholder="0" v-model="form.num_comments">
             </div>
             <input class="btn btn-secondary" type="submit" value="Submit">
         </form>
@@ -36,7 +36,13 @@
         data () {
             return {
                 baseUrl: process.env.BASE_URL,
-                form: {text: ''},
+                form: {
+                    title: '',
+                    text: '',
+                    num_upvotes: 0,
+                    num_downvotes: 0,
+                    num_comments: 0
+                },
                 result: null,
             }
         },
