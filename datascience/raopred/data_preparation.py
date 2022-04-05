@@ -1,23 +1,24 @@
 import nltk
+from nltk.corpus import wordnet as wn
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
 
+
+punctuation = list(",.?!(){}[]-_\"'\\;:+*<>@#§^$%&|/") + ['\n', '\r', '\t', '...', '..']
 try:
-    from nltk.corpus import wordnet as wn
-    from nltk.corpus import stopwords
-    from nltk.stem import WordNetLemmatizer
-    from nltk.tokenize import word_tokenize
+    stop_words = set(stopwords.words('english'))
 except Exception as e:
-    print(e)
     nltk.download('stopwords')
     nltk.download('wordnet')
     nltk.download('omw-1.4')
     nltk.download('punkt')
     nltk.download('averaged_perceptron_tagger')
 
-
-punctuation = list(",.?!(){}[]-_\"'\\;:+*<>@#§^$%&|/") + ['\n', '\r', '\t', '...', '..']
 stop_words = set(stopwords.words('english'))
 stop_words.add("request")
 stop_words.add("edit")
+
 
 lemmatizer = WordNetLemmatizer()
 tag_dict = {"J": wn.ADJ,
@@ -40,7 +41,7 @@ def lemmatize_tupla_word_postag(tupla):
     return lemmatizer.lemmatize(tupla[0], tag) if tag is not None else tupla[0]
 
 
-def correspondance_miswrite(word):
+def correspondance_miswrite(word: str) -> str:
     if word == "im":
         return "i'm"
     elif word == "ive":
@@ -49,7 +50,10 @@ def correspondance_miswrite(word):
         return word
 
 
-def clean_text(sentence):
+def clean_text(sentence: str) -> str:
+    """
+    Processes a sentence to keep only important words
+    """
     sentence = sentence.lower()
     original_words = word_tokenize(sentence)
     tagged_words = nltk.pos_tag(original_words) #returns a list of tuples: (word, tagString) like ('And', 'CC')

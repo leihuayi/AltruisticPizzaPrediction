@@ -13,6 +13,15 @@ services:
       - $PWD/research:/home/jovyan/research
     command: ["jupyter", "notebook"]
 
+  train:
+    build:
+      context: .
+      target: train
+    volumes:
+      - $PWD/raopred:/home/jovyan/raopred
+      - $PWD/research:/home/jovyan/research
+    command: ["python", "-m", "research.train"]
+
   tests:
     build:
       context: .

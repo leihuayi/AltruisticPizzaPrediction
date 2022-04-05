@@ -3,7 +3,6 @@ version: '3.8'
 services:
 
   api:
-    image: raopdemo-api:dev
     build:
       context: ./api
       target: dev
@@ -13,7 +12,6 @@ services:
       - $PWD/api/src:/app/src
 
   client:
-    image: raopdemo-client:dev
     build:
       context: ./client
       target: dev

@@ -1,8 +1,8 @@
 import shutil, os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
-# from raopred import predict
+from fastapi.responses import PlainTextResponse
+from raopred import predict
 
 app = FastAPI()
 
@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 
-@app.get("/")
+@app.get("/", response_class=PlainTextResponse)
 def home():
     return "RAOP API"
 
@@ -32,6 +32,15 @@ def home():
 async def predict(req : Request):
     data = await req.json()
     print(data)
-    # label = predict(data.text)
+
+    input_data = [
+        data.title + ' ' + data.text,
+        len(data.text),
+        data.num_downvotes,
+        data.num_upvotes,
+        data.num_comments
+    ]
+
+    label = predict(input_data)
     label = False
     return {"label": label}
