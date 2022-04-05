@@ -27,7 +27,7 @@ jobs:
     - name: Build docker image for tests
       run: docker-compose build tests
     - name: Run tests
-      run: docker-compose up tests -d
+      run: docker-compose up tests
     - name: Build a binary wheel and a source tarball
       run: python -m build --sdist --wheel --outdir dist/
     - name: Publish package 📦 to Test PyPI
