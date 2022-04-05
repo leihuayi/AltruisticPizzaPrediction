@@ -6,15 +6,6 @@ on:
     - main
 
 jobs:
-  check-files-modified:
-    runs-on: ubuntu-latest
-    outputs:
-      changed_files: ${{ steps.changed-files.outputs.all_modified_files }}
-    steps:
-    - uses: actions/checkout@v2
-    - name: Verify Changed files
-      uses: tj-actions/changed-files@v18.4
-      id: changed-files
 
   build-datascience-test-publish:
     name: Build and publish Python 🐍 package 📦 to TestPyPI
@@ -28,6 +19,8 @@ jobs:
       run: docker-compose build tests
     - name: Run tests
       run: docker-compose up tests
+    - name: Install pypa/build
+      run: python -m pip install build --user
     - name: Build a binary wheel and a source tarball
       run: python -m build --sdist --wheel --outdir dist/
     - name: Publish package 📦 to Test PyPI
