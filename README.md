@@ -1,9 +1,9 @@
 # AltruisticPizzaPrediction
-Predict the success of Random Acts of Pizza requests through ML
+The [Reddit Thread "Random Acts of Pizza"](https://www.reddit.com/r/Random_Acts_Of_Pizza/) is made of a bunch of people making posts to request others to offer them a pizza. Other members of the thread can decide to be altruistic and offer them the pizza they queried.
+The purpose of this project is to be able to predict, using Machine Learning / NLP, using as input a typical Reddit post requesting a pizza, the likelyness that this person will effectively receive a pizza.
 
 ## References
 * [Kaggle Challenge](https://www.kaggle.com/competitions/random-acts-of-pizza/overview)
-* [Reddit Thread](https://www.reddit.com/r/Random_Acts_Of_Pizza/)
 * [Accompanying paper](https://cs.stanford.edu/~althoff/raop-dataset/altruistic_requests_icwsm.pdf) of Tim Althoff, Cristian Danescu-Niculescu-Mizil, Dan Jurafsky. _How to Ask for a Favor: A Case Study on the Success of Altruistic Requests_, Proceedings of ICWSM, 2014.
 
 ## Project structure
